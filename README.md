@@ -11,3 +11,7 @@
 
 # Excel документ с результатами и таблицей
 [result.xlsx](https://github.com/Rorvit/MovingAverage/files/15010113/result.xlsx)
+
+
+# Excel документ с обновлянными данными
+[result optimization.xlsx](https://github.com/Rorvit/MovingAverage/files/15023853/result.optimization.xlsx)
