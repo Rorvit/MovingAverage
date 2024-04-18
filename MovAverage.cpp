@@ -1,64 +1,58 @@
 ﻿#include "MovAverage.h"
 #include <iostream>
 
-void MovAverage(std::vector<float>& vals, int& window)
+using namespace std;
+
+void MovAverage(std::vector<float>& vals, int window)
 {
     if (vals.size() >= window && window > 0)
     {
-        std::vector<float>::iterator it;
-        it = vals.begin();
-        std::advance(it, window - 1);
-        float buff = 0;
         std::vector<float> buff_vals;
-        for (int i = 1; i < vals.size(); i++)
+        float sum = 0;
+
+        for (int i = 0; i < vals.size(); i++)
         {
-            for (int j = 1; j <= window; j++)
+            sum += vals[i];
+            if (i >= window)
             {
-                buff += *it;
-                if (j == window) break;
-                std::advance(it, -1);
+                buff_vals.push_back(sum / window);
+                sum -= vals[i - window + 1];
             }
-            buff = buff / window;
-            buff_vals.push_back(buff);
-            buff = 0;
-            if (it < (vals.end() - (window)))
-            {
-                std::advance(it, window);
-            }
-            else break;
         }
     }
-    else if (window) std::cout << "Error! Large window size!" << std::endl;
-    else std::cout << "Error!Size of the window equal 0!" << std::endl;
+    else if (window > 0)
+    {
+        cout << "Error! Large window size!" << endl;
+    }
+    else
+    {
+        cout << "Error! Size of the window equals 0!" << endl;
+    }
 }
 
-void MovAverage(std::vector<double>& vals, int& window)
+void MovAverage(std::vector<double>& vals, int window)
 {
     if (vals.size() >= window && window > 0)
     {
-        std::vector<double>::iterator it;
-        it = vals.begin();
-        std::advance(it, window - 1);
-        double buff = 0;
         std::vector<double> buff_vals;
-        for (int i = 1; i < vals.size(); i++)
+        double sum = 0;
+
+        for (int i = 0; i < vals.size(); i++)
         {
-            for (int j = 1; j <= window; j++)
+            sum += vals[i];
+            if (i >= window)
             {
-                buff += *it;
-                if (j == window) break;
-                std::advance(it, -1);
+                buff_vals.push_back(sum / window);
+                sum -= vals[i - window + 1];
             }
-            buff = buff / window;
-            buff_vals.push_back(buff);
-            buff = 0;
-            if (it < (vals.end() - (window)))
-            {
-                std::advance(it, window);
-            }
-            else break;
         }
     }
-    else if (window) std::cout << "Error! Large window size!" << std::endl;
-    else std::cout << "Error!Size of the window equal 0!" << std::endl;
+    else if (window > 0)
+    {
+        cout << "Error! Large window size!" << endl;
+    }
+    else
+    {
+        cout << "Error! Size of the window equals 0!" << endl;
+    }
 }
